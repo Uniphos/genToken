@@ -7,10 +7,10 @@ export default async function handler(req, res) {
   }
 
   // Extract user information from the request body
-  const { user_id, role } = req.body;
+  const { user_id} = req.body;
 
-  if (!user_id || !role) {
-    return res.status(400).json({ message: 'User ID and Role are required' });
+  if (!user_id) {
+    return res.status(400).json({ message: 'User ID are required' });
   }
 
   // Your Stream API Key and Secret (replace these with your own values)
@@ -30,7 +30,7 @@ export default async function handler(req, res) {
 
     // You can customize the role and other fields as needed
     // Example: Set role on the token
-    const userToken = chatClient.createToken(user_id, { role });
+    const userToken = chatClient.createToken(user_id);
 
     res.status(200).json({ token: userToken });
   } catch (error) {
